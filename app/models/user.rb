@@ -10,7 +10,5 @@ class User < ApplicationRecord
     validates :age, numericality: { greater_than_or_equal_to: 16, less_than_or_equal_to: 85 }
     validates :email, presence: true
     validates :name, presence: true
-    validates :bio, presence: true
-    validates :password, presence: true
-
+    
 end

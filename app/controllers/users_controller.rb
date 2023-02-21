@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
- before_action :authenticate, only: [:me, :update, :destroy]
+ before_action :authenticate, only: [:me, :update, :shadow_realm]
  
   def me
     render json: {user: @current_user}
   end
 
   def login
-    user = User.find_by(username: params[:username])
+    user = User.find_by(username: params[:username]) || User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
         #encode a token to send back
-        token = JWT.encode({user_id: user.id, username: user.username}, Rails.application.credentials.app_secret, 'HS256')
+        token = JWT.encode({user_id: user.id, username: user.username}, Rails.application.credentials.jwtsecret, 'HS256')
         render json: { user: user, token: token }, status: 200
     else 
-        render json: {error: 'nah jit trippin'}, status: 420
+        render json: {error: 'nah jit trippin email or password is fucked up my g fix ur shit then come back or its gonna get wicked'}, status: 420
     end
   end
 
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def shadow_realm
     user = User.find(params[:id])
     if @current_user.id == user.id  
       user.destroy

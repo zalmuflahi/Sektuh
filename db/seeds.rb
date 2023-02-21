@@ -8,7 +8,11 @@
 User.destroy_all
 Follow.destroy_all
 
+puts('anything 1')
 user1 = User.create(name: "zaid", password: "111", username: "zaid", email: "zaid@example.com", age: 24)
 user2 = User.create(name: "you", password: "111", username: "you", email: "you@example.com", age: 24)
-
+user3 = User.create(name: "me", password: "111", username: "me", email: "me@example.com", age: 24)
+puts('anything 2')
 follow1 = Follow.create!(followee_id: user1.id, follower_id: user2.id)
+follow2 = Follow.create!(followee_id: user2.id, follower_id: user1.id)
+puts('anything 3')
