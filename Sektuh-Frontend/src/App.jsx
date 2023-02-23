@@ -6,10 +6,11 @@ import {
 import Cookies from "js-cookie";
 import Home from './components/home/Home';
 import Login from './components/login/Login';
+import Profile from "./components/profile/Profile";
+import Settings from "./components/profile/settings/Settings";
 
 function App() {
   const [user, setUser] = useState({})
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -18,6 +19,14 @@ function App() {
     {
       path: "/home",
       element: <Home user={user} setUser={setUser}/>,
+    },
+    {
+      path: "/profile",
+      element: <Profile user={user} setUser={setUser} />,
+    },
+    {
+      path: "/settings",
+      element: <Settings user={user} setUser={setUser} />,
     }
   ]);
 

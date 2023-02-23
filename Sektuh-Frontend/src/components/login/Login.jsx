@@ -19,9 +19,9 @@ function Login({user, setUser}) {
         navigate('/home')
     }
     return (
-        <div className='App'>
+        <div className='App'> 
             <form onSubmit={handleSubmit} ref={form}>
-                <input name="email" type="email" placeholder="Email" />
+                <input name="name" type="text" placeholder="Username or Email" />
                 <input name="password" type="password" placeholder="Password" />
                 <button>LOGIN</button>
             </form>

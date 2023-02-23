@@ -1,10 +1,10 @@
-import Profile from "../profile/Profile"
+import { useNavigate } from "react-router-dom"
 
 const Home = ({user, setUser}) => {
-
+const navigate = useNavigate()
     return (
         <div>
-            {user && <Profile user={user} setUser={setUser} />}
+            <button onClick={()=>{navigate('/profile')}}>Profile</button>
         </div>
     )
 }

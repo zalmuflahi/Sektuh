@@ -1,19 +1,16 @@
-import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom"
+// import Follow from "./Follow"
 
-const Profile = ({user, setUser}) => {
+const Profile = ({user}) => {
    const navigate = useNavigate() 
-    const logout = () => {
-        Cookies.remove('token')
-        setUser(null)
-        navigate('/')
-    }
-
+    
     return (
         <div>
+            <button onClick={()=>{navigate('/settings')}}>⚙️</button>
             <h1>{user.username}</h1>
-            <button onClick={logout}>LOGOUT</button>
+            
         </div>
     )
 }
+
 export default Profile

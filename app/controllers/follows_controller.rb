@@ -12,8 +12,8 @@ class FollowsController < ApplicationController
   end
 
   def unfollow
-    follow = @current_user.follows.find_by(followee_id: params[:followee_id])
-    follow.destroy
-    render json: follow
+    user = User.find(params[:id])
+    unfollowing = @current_user.followed_users.find_by(followee_id: user.id).destroy
+    render json: unfollowing
   end
 end
