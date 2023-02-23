@@ -7,7 +7,7 @@ class FollowsController < ApplicationController
     if follow.save
       render json: follow
     else
-      render json: {error: 'Could not follow user'}, status: :unprocessable_entity
+      render json: {error: 'You are already following this user'}
     end
   end
 

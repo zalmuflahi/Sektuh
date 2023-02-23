@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 const Follow = () => {
     const [follow, setFollow] = useState('')
     const [profiles, setProfiles] = useState({})
-    
+
     useEffect(() => {
         const loadUser = async () => {
             let req = await fetch('http://localhost:3000/profile', {
@@ -35,6 +35,7 @@ const Follow = () => {
     return (
         <div>
         <button onClick={handleClick}>Follow</button>
+        <Unfollow />
         </div>
     )
 }

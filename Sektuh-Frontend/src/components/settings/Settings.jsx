@@ -12,7 +12,10 @@ const Settings = ({ user, setUser }) => {
 
     return(
     <div>
+        <button onClick={() => { navigate('/profile') }}>Back</button>
+        <button onClick={()=>{navigate('/edit_profile')}}>Edit Account</button>
         <button onClick={logout}>LOGOUT</button>
+        <button onClick={() => {navigate('/yes_i_am')}}>Delete Account</button>
     </div>
     )
 }

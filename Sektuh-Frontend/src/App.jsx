@@ -7,7 +7,12 @@ import Cookies from "js-cookie";
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Profile from "./components/profile/Profile";
-import Settings from "./components/profile/settings/Settings";
+import Settings from "./components/settings/Settings";
+import Areyousureyousure from "./components/settings/shadow realm/Areyousureyousure";
+import Areyousure from "./components/settings/shadow realm/Areyousure";
+import Youreallywantto from "./components/settings/shadow realm/Youreallywantto";
+import Shadowrealm from "./components/settings/shadow realm/Shadowrealm";
+import EditProfile from "./components/settings/Editprofile";
 
 function App() {
   const [user, setUser] = useState({})
@@ -25,8 +30,28 @@ function App() {
       element: <Profile user={user} setUser={setUser} />,
     },
     {
+      path: "/edit_profile",
+      element: <EditProfile user={user} setUser={setUser} />,
+    },
+    {
       path: "/settings",
       element: <Settings user={user} setUser={setUser} />,
+    },
+    {
+      path: "/yes_delete_it",
+      element: <Areyousureyousure />,
+    },
+    {
+      path: "/yes_i_am",
+      element: <Areyousure />,
+    },
+    {
+      path: "/door2shadowrealm",
+      element: <Youreallywantto />,
+    },
+    {
+      path: "/shadowrealm",
+      element: <Shadowrealm user={user} setUser={setUser} />,
     }
   ]);
 

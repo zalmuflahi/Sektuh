@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = Follow.find_by(followee_id: params[:followee_id])
-    users = user.find_by(username: params[:username])
+    users = User.find_by(username: params[:username])
     render json: users
   end
 
@@ -29,6 +28,15 @@ class UsersController < ApplicationController
       render json: {user: user, token: nil}, status: 200
     else
       render json: {error: user.errors.full_messages[0]}, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    user = @current_user.update(user_params)
+    if user
+      render json: @current_user, status: :ok
+    else
+      render json: {errors: @user.errors }, status: :unprocessable_entity
     end
   end
 

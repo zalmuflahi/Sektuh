@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show'
   post '/login', to: 'users#login'
   post '/signup', to: 'users#signup'
+  delete '/users/:id', to: 'users#destroy'
+  patch '/users/:id', to: 'users#update'
 
-  
   post 'follow/:username', to: 'follows#follow'
   delete 'unfollow/:id', to: 'follows#unfollow'
 end
