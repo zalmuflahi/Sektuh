@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = @current_user.update(user_params)
+    user = @current_user.update(name: params[:name], username: params[:username], password: params[:password])
     if user
       render json: @current_user, status: :ok
     else

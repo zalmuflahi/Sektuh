@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   post '/signup', to: 'users#signup'
   delete '/users/:id', to: 'users#destroy'
-  patch '/users/:id', to: 'users#update'
+  patch '/edit/:id', to: 'users#update'
 
   post 'follow/:username', to: 'follows#follow'
   delete 'unfollow/:id', to: 'follows#unfollow'

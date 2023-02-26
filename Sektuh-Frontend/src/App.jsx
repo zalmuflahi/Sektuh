@@ -15,7 +15,7 @@ import Shadowrealm from "./components/settings/shadow realm/Shadowrealm";
 import EditProfile from "./components/settings/Editprofile";
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState([])
   const router = createBrowserRouter([
     {
       path: "/",

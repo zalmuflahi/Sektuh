@@ -2,71 +2,44 @@ import { useState } from 'react';
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 
-const EditProfile = ({ user, setUser }) => {
+const EditProfile = ({ user, setUser}) => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('')
-    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('')
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const token = Cookies.get('token');
-            const req = await fetch(`http://localhost:3000/users/${user.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ username, password, name }),
-            });
-
-            if (!req.ok) {
-                const errorMessage = await req.json();
-                throw new Error(errorMessage.error);
-            }
-            const res = await req.json()
-            setUser(res);
-            navigate('/profile');
-        } catch {
-            setError(e.message);
-            console.log(e)
-        }
+        let req = await fetch(`http://localhost:3000/edit/${user.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': Cookies.get('token'),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password, name }),
+        });
+        let res = await req.json()
+        setUser(res);
+        console.log(res);
+        navigate('/settings')
     }
 
     return (
         <div>
-            {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <h5>Name</h5>
-                    <input
-                        type="text"
-                        value={name}
-                        placeholder="First name"
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                    <input type="text" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
                 <br />
                 <div>
                     <h5>Username</h5>
-                    <input
-                        type="text"
-                        value={username}
-                        placeholder="Username"
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <br />
                 <div>
                     <h5>Password</h5>
-                    <input
-                        type="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <br />
                 <button type="submit">SAVE CHANGES</button>
