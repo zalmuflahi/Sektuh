@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const EditProfile = ({ user, setUser}) => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -16,7 +16,7 @@ const EditProfile = ({ user, setUser}) => {
                 'Authorization': Cookies.get('token'),
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password, name }),
+            body: JSON.stringify({ username, password, name }),
         });
         let res = await req.json()
         setUser(res);
@@ -34,7 +34,7 @@ const EditProfile = ({ user, setUser}) => {
                 <br />
                 <div>
                     <h5>Username</h5>
-                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <br />
                 <div>

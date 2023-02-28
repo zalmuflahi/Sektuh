@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
-  before_action :authenticate, only: [:create, :destroy, :show]
+  before_action :authenticate, only: [:create, :destroy, :show, :newsfeed]
 
+  def newsfeed
+    postss = @current_user.posts
+    followee_posts = []
+    @current_user.followees.each do |followee|
+    followee_posts += followee.posts
+    end
+    render json: followee_posts + postss
+  end
 
   def show
     posts = @current_user.posts

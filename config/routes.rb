@@ -10,4 +10,7 @@ Rails.application.routes.draw do
 
   post 'follow/:username', to: 'follows#follow'
   delete 'unfollow/:id', to: 'follows#unfollow'
+
+  get '/newsfeed', to: 'posts#newsfeed'
+  get '/show/:id', to: 'posts#show'
 end
